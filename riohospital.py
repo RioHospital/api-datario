@@ -63,23 +63,23 @@ class RioHospitalService:
             indexCounter = indexCounter + 1
     
         for row in hospitalsRaw['DATA']:
-            if(isinstance(row[numberIndex], numbers.Number)):
+            if isinstance(row[numberIndex], numbers.Number):
                 addressNumber = str(int(row[numberIndex]))
             else:
                 addressNumber = str(row[numberIndex])
                 
-            if(isinstance(row[extraIndex], numbers.Number)):
+            if isinstance(row[extraIndex], numbers.Number):
                 addressExtra = str(int(row[extraIndex]))
             else:
                 addressExtra = str(row[extraIndex])
                 
-            if(isinstance(row[phoneIndex], numbers.Number)):
+            if isinstance(row[phoneIndex], numbers.Number):
                 phone = str(int(row[phoneIndex]))
             else:
                 phone = str(row[phoneIndex])
                 
-            address = row[streetIndex] + " " + addressNumber + " " + addressExtra + " - Bairro: " + row[neighborhoodIndex] + " - CEP: " + str(int(row[postalCodeIndex]))
-            hospitals.append({"name": row[nameIndex], "address": address, "phone": phone, "latitude": row[latitudeIndex], "longitude": row[longitudeIndex]})
+            address = row[streetIndex] + " " + addressNumber + " " + addressExtra
+            hospitals.append({"name": row[nameIndex], "address": address, "neighborhood": row[neighborhoodIndex], "postalCode": str(int(row[postalCodeIndex])), "phone": phone, "latitude": row[latitudeIndex], "longitude": row[longitudeIndex]})
     
         return hospitals
         
