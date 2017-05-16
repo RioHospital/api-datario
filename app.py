@@ -22,12 +22,12 @@ def return_json(f):
         return response
     return inner
 
-@app.route('/getHospitals')
+@app.route('/hospitals')
 @return_json
 def getHospitals():
     return rioHospitalService.getHospitals()
 
-@app.route('/getHealthInsurancePlans')
+@app.route('/healthInsurancePlans')
 @return_json
 def getHealthInsurancePlans():
     return rioHospitalService.getHealthInsurancePlans()
