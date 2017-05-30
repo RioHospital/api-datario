@@ -13,6 +13,10 @@ from importlib import import_module
 
 class RioHospitalService:
     
+    '''
+    Pre-Condição :  
+    Pós-Condição : 
+    '''
     def __init__(self):
         self.hospitalWebServiceURL = "http://dadosabertos.rio.rj.gov.br/apiSaude/apresentacao/rest/index.cfm/estabelecimentos"
         self.healthInsurancePlans = []
@@ -32,7 +36,11 @@ class RioHospitalService:
                 except Exception as e:
                     sys.stderr.write('unable to load module: %s: %s\n' % (filename, e))
                     continue
-        
+                    
+    '''
+    Pre-Condição : a variavel "hospitalWebServiceURL" seja uma url valida, contendo json desejado.
+    Pós-Condição : retorna uma array contendo os dados desejados dos hospitais contidos na url
+    '''    
     def getHospitals(self):
         request = Request(self.hospitalWebServiceURL)
         request.add_header('Accept', 'text/html')
@@ -82,7 +90,11 @@ class RioHospitalService:
             hospitals.append({"name": row[nameIndex], "address": address, "neighborhood": row[neighborhoodIndex], "postalCode": str(int(row[postalCodeIndex])), "phone": phone, "latitude": row[latitudeIndex], "longitude": row[longitudeIndex]})
     
         return hospitals
-        
+     
+    '''
+    Pre-Condição : a variavel "healthInsurancePlans" deve conter todos os planos de saude necessarios  
+    Pós-Condição : retornar uma array contendo id e nome dos planos de saude
+    '''    
     def getHealthInsurancePlans(self):
         jsonData = []
         
