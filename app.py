@@ -14,6 +14,10 @@ app = Flask(__name__)
 
 rioHospitalService = RioHospitalService()
 
+'''
+Pre-Condição :  
+Pós-Condição : 
+'''
 def return_json(f):
     @wraps(f)
     def inner(*a, **k):
@@ -22,13 +26,21 @@ def return_json(f):
         return response
     return inner
 
+'''
+Pre-Condição : a variavel "rioHospitalService" deve estar propriamente inicializada
+Pós-Condição : retorna a array contendo os dados desejados dos hospitais
+'''
 @app.route('/hospitals')
-@return_json
+@return_json 
 def getHospitals():
     return rioHospitalService.getHospitals()
 
+'''
+Pre-Condição : a variavel "rioHospitalService" deve estar propriamente inicializada
+Pós-Condição : retorna a array contendo os dados desejados dos planos de saude
+'''
 @app.route('/healthInsurancePlans')
-@return_json
+@return_json 
 def getHealthInsurancePlans():
     return rioHospitalService.getHealthInsurancePlans()
 
