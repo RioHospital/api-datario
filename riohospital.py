@@ -14,8 +14,10 @@ from importlib import import_module
 class RioHospitalService:
     
     '''
-    Pre-Condição :  
-    Pós-Condição : 
+    __init__
+    Description : initializes the properties of this service, reading the health insurance plans configurations
+    Precondition : there are .py files in "healthInsurancePlans" folder
+    Postcondition : the modules from health insurance plans have been imported
     '''
     def __init__(self):
         self.hospitalWebServiceURL = "http://dadosabertos.rio.rj.gov.br/apiSaude/apresentacao/rest/index.cfm/estabelecimentos"
@@ -38,8 +40,10 @@ class RioHospitalService:
                     continue
                     
     '''
-    Pre-Condição : a variavel "hospitalWebServiceURL" seja uma url valida, contendo json desejado.
-    Pós-Condição : retorna uma array contendo os dados desejados dos hospitais contidos na url
+    getHospitals
+    Description : returns a Python table containing data from the hospitals dataset
+    Precondition : the variable "hospitalWebServiceURL" must contain a vaild url, with a json containing the data needed.
+    Postcondition : returns a Python table containing the data from the hospitals dataset.
     '''    
     def getHospitals(self):
         request = Request(self.hospitalWebServiceURL)
@@ -92,8 +96,10 @@ class RioHospitalService:
         return hospitals
      
     '''
-    Pre-Condição : a variavel "healthInsurancePlans" deve conter todos os planos de saude necessarios  
-    Pós-Condição : retornar uma array contendo id e nome dos planos de saude
+    getHealthInsurancePlans
+    Description : returns a Python table with the needed data from the health insurance plans.
+    Precondition : the variable "healthInsurancePlans" must contain every health insurance plan.  
+    Postcondition : a Python table containing the id and name from the health insurance plans has been returned.
     '''    
     def getHealthInsurancePlans(self):
         jsonData = []

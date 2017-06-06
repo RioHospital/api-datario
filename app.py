@@ -15,8 +15,10 @@ app = Flask(__name__)
 rioHospitalService = RioHospitalService()
 
 '''
-Pre-Condição :  
-Pós-Condição : 
+return_json
+Description: Converts a Python table to json format
+Precondition : f is a valid table
+Postcondition : returns f in json format
 '''
 def return_json(f):
     @wraps(f)
@@ -27,8 +29,10 @@ def return_json(f):
     return inner
 
 '''
-Pre-Condição : a variavel "rioHospitalService" deve estar propriamente inicializada
-Pós-Condição : retorna a array contendo os dados desejados dos hospitais
+getHospitals
+Description : returns a Python table containing data from the hospitals dataset
+Precondition : the variable "rioHospitalService" must have been properly initialized
+Postcondition : returns a table with the necessary data from the hospitals dataset
 '''
 @app.route('/hospitals')
 @return_json 
@@ -36,8 +40,10 @@ def getHospitals():
     return rioHospitalService.getHospitals()
 
 '''
-Pre-Condição : a variavel "rioHospitalService" deve estar propriamente inicializada
-Pós-Condição : retorna a array contendo os dados desejados dos planos de saude
+getHealthInsurancePlans
+Description : returns a Python table with the needed data from the health insurance plans.
+Precondition : the variable "rioHospitalService" must have been properly initialized
+Postcondition : returns a table with the necessary data from the health insurance plans dataset
 '''
 @app.route('/healthInsurancePlans')
 @return_json 
