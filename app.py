@@ -19,6 +19,7 @@ return_json
 Description: Converts a Python table to json format
 Precondition : f is a valid table
 Postcondition : returns f in json format
+Validation : the function json.dumps and Response does the necessary transformations to f
 '''
 def return_json(f):
     @wraps(f)
@@ -33,6 +34,7 @@ getHospitals
 Description : returns a Python table containing data from the hospitals dataset
 Precondition : the variable "rioHospitalService" must have been properly initialized
 Postcondition : returns a table with the necessary data from the hospitals dataset
+Validation : calls the function getHospitals which is validated
 '''
 @app.route('/hospitals')
 @return_json 
@@ -44,6 +46,7 @@ getHealthInsurancePlans
 Description : returns a Python table with the needed data from the health insurance plans.
 Precondition : the variable "rioHospitalService" must have been properly initialized
 Postcondition : returns a table with the necessary data from the health insurance plans dataset
+Validation : calls the function getHealthInsurancePlans which is validated 
 '''
 @app.route('/healthInsurancePlans')
 @return_json 
