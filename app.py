@@ -42,17 +42,13 @@ def getHospitals():
     return rioHospitalService.getHospitals()
 
 '''
-getHealthInsurancePlans
-Description : returns a Python table with the needed data from the health insurance plans.
-Precondition : the variable "rioHospitalService" must have been properly initialized
-Postcondition : returns a table with the necessary data from the health insurance plans dataset
-Validation : calls the function getHealthInsurancePlans which is validated 
+main
+Description : executes the Flask web server
+Precondition : the HTTP port 5000 is available for use
+Postcondition : the HTTP port 5000 isn't being used by the app
+Validation : calls the Flask function that starts the webserver on a specified port while the script is running,
+             passing the value corresponding to the port 5000 on the system (os.environ.get("PORT", 5000))
 '''
-@app.route('/healthInsurancePlans')
-@return_json 
-def getHealthInsurancePlans():
-    return rioHospitalService.getHealthInsurancePlans()
-
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=True, host='0.0.0.0', port=port)

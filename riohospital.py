@@ -15,30 +15,13 @@ class RioHospitalService:
     
     '''
     __init__
-    Description : initializes the properties of this service, reading the health insurance plans configurations
-    Precondition : there are .py files in "healthInsurancePlans" folder
-    Postcondition : the modules from health insurance plans have been imported
-    Validation : the for loop finds all the .py files from the folder "healthInsurancePlans" and than imports them
+    Description : initializes the properties of this service
+    Precondition : -
+    Postcondition : the hospital web service url has been set
+    Validation : the function assigns an URL to self.hospitalWebServiceURL
     '''
     def __init__(self):
         self.hospitalWebServiceURL = "http://dadosabertos.rio.rj.gov.br/apiSaude/apresentacao/rest/index.cfm/estabelecimentos"
-        self.healthInsurancePlans = []
-        pluginPath = "healthInsurancePlans"
-        
-        for filename in os.listdir(pluginPath):
-            module_name, ext = os.path.splitext(filename)
-            
-            if ext == '.py':
-                try:
-                    module = import_module(pluginPath + "." + module_name)
-                    
-                    for classname in dir(module):
-                        if classname.startswith("Plan_"):
-                            self.healthInsurancePlans.append(getattr(module, classname)())
-                            
-                except Exception as e:
-                    sys.stderr.write('unable to load module: %s: %s\n' % (filename, e))
-                    continue
                     
     '''
     getHospitals
@@ -97,18 +80,4 @@ class RioHospitalService:
             hospitals.append({"name": row[nameIndex], "address": address, "neighborhood": row[neighborhoodIndex], "postalCode": str(int(row[postalCodeIndex])), "phone": phone, "latitude": row[latitudeIndex], "longitude": row[longitudeIndex]})
     
         return hospitals
-     
-    '''
-    getHealthInsurancePlans
-    Description : returns a Python table with the needed data from the health insurance plans.
-    Precondition : the variable "healthInsurancePlans" must contain every health insurance plan.  
-    Postcondition : a Python table containing the id and name from the health insurance plans has been returned.
-    Validation : the function iterates over "healthInsurancePlans" and builds the return table through the for loop
-    '''    
-    def getHealthInsurancePlans(self):
-        jsonData = []
-        
-        for healthInsurancePlan in self.healthInsurancePlans:
-            jsonData.append({"id": healthInsurancePlan.getId(), "name": healthInsurancePlan.getName()})
-            
-        return jsonData
+    

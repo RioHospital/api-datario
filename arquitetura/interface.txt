@@ -9,8 +9,3 @@ Métodos:
 HTTP GET: /hospitals
 Descrição: Retorna uma lista com os hospitais cadastrados a serem exibidos de forma filtrada pela localização/raio no app, no formato:
 {"name": NOME, "address": ENDEREÇO, "neighborhood": BAIRRO, "postalCode": CEP, "phone": TELEFONE, "latitude": LATITUDE, "longitude": LONGITUDE}
-
-HTTP GET: /healthInsurancePlans
-Descrição: Retorna uma lista com os planos de saúde cadastrados a serem exibidos no app, no formato:
-{"id": IDENTIFICADOR NUMÉRICO, "name": NOME}
-
