@@ -36,7 +36,10 @@ class RioHospitalService:
         request.add_header('Accept', 'text/html')
         request.add_header('charset', 'utf-8')
         response = urlopen(request)
-        hospitalsRaw = json.loads(str(response.read().decode('cp1252')))
+        try:
+            hospitalsRaw = json.loads(str(response.read().decode('cp1252')))
+        except:
+            pass
         hospitals = []
         indexCounter = 0
         for columnName in hospitalsRaw['COLUMNS']:
