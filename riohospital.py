@@ -39,6 +39,7 @@ class RioHospitalService:
         try:
             hospitalsRaw = json.loads(str(response.read().decode('cp1252')))
         except:
+            print("Null value returned from json.loads")
             pass
         hospitals = []
         indexCounter = 0
